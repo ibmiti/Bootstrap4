@@ -2,6 +2,14 @@ var gulp        = require('gulp');
 var browserSync = require('browserSync');
 var sass        = require('gulp-sass');
 
+// Compile sass into CSS & auto-inject into browsers
+gulp.task('sass', function() {
+  return gulp.src(['node_modules/bootstrap/scss/bootstrap.css', 'src/scss/*.scss'])
+    .pipe(sass())
+    .pipe(gulp.dest("src/css"))
+    .pipe(browserSync.stream());
+});
+
 // Move the JavaScript files into our /src/js folder
 gulp.task('js', function() {
   return gulp.src(['node_modules/bootstrap/dist/js/bootstrap.min.js', 'node_modules/jquery/dist/jquery.min.js', 'node_modules/popper.js/dist/umd/popper.min.js'])
